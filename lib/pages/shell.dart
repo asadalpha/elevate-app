@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dashboard_page.dart';
 import 'saved_page.dart';
-import 'ai_flashcard_page.dart';
+import 'ai_mode_page.dart';
 import 'profile_page.dart';
 import '../controllers/saved_controller.dart';
 
@@ -17,7 +17,7 @@ class _ShellState extends State<Shell> {
   final pages = const [
     DashboardPage(),
     SavedPage(),
-    AiFlashcardPage(),
+    AiModePage(),
     ProfilePage(),
   ];
 

@@ -1,20 +1,20 @@
 import 'package:get/get.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AuthController extends GetxController {
-  final supabase = Supabase.instance.client;
+  final SupabaseClient supabase = Supabase.instance.client;
 
-  final session = Rxn<Session>();
-  final loading = false.obs;
+  final Rxn<Session> session = Rxn<Session>();
+  final RxBool loading = false.obs;
 
   @override
   void onInit() {
     session.value = supabase.auth.currentSession;
 
-    supabase.auth.onAuthStateChange.listen((event) {
-      session.value = event.session;
+    supabase.auth.onAuthStateChange.listen((data) {
+      session.value = data.session;
     });
 
     super.onInit();
@@ -24,43 +24,39 @@ class AuthController extends GetxController {
     try {
       loading.value = true;
 
-      const webClientId = "YOUR_WEB_CLIENT_ID.apps.googleusercontent.com";
-      const iosClientId = "YOUR_IOS_CLIENT_ID.apps.googleusercontent.com";
+      const scopes = ['email', 'profile'];
 
-      final google = GoogleSignIn(
-        serverClientId: webClientId,
-        clientId: iosClientId,
+      final googleSignIn = GoogleSignIn.instance;
+
+      await googleSignIn.initialize(
+        // For Android, clientId is NOT required
+        serverClientId: dotenv.env['WEB_CLIENT_ID'],
       );
 
-      final user = await google.signIn();
-      if (user == null) return;
+      final googleUser =
+          //await googleSignIn.signIn() ??
+          await googleSignIn.authenticate();
 
-      final auth = await user.authentication;
+      final authorization =
+          await googleUser.authorizationClient.authorizationForScopes(scopes) ??
+          await googleUser.authorizationClient.authorizeScopes(scopes);
 
-      if (auth.idToken == null || auth.accessToken == null) {
-        throw "Missing Google ID token or access token.";
+      final idToken = googleUser.authentication.idToken;
+
+      if (idToken == null) {
+        throw const AuthException('No Google ID Token found');
       }
 
       await supabase.auth.signInWithIdToken(
         provider: OAuthProvider.google,
-        idToken: auth.idToken!,
-        accessToken: auth.accessToken!,
-      );
-    } on AuthException catch (e) {
-      Get.snackbar(
-        "Auth Error",
-        e.message,
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.2),
-        colorText: Colors.red,
+        idToken: idToken,
+        accessToken: authorization.accessToken,
       );
     } catch (e) {
       Get.snackbar(
-        "Login Failed",
+        'Auth Error',
         e.toString(),
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red.withOpacity(0.2),
-        colorText: Colors.red,
       );
     } finally {
       loading.value = false;
@@ -69,6 +65,8 @@ class AuthController extends GetxController {
 
   Future<void> signOut() async {
     await supabase.auth.signOut();
-    await GoogleSignIn().signOut();
+    await GoogleSignIn.instance.signOut();
   }
+
+  bool get isLoggedIn => session.value != null;
 }

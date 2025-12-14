@@ -31,10 +31,12 @@ class SessionPage extends StatelessWidget {
         ],
       ),
       body: Obx(() {
-        if (c.loading.value)
+        if (c.loading.value) {
           return const Center(child: CircularProgressIndicator());
-        if (c.questions.isEmpty)
+        }
+        if (c.questions.isEmpty) {
           return const Center(child: Text('No questions yet.'));
+        }
         final q = c.questions[c.idx.value];
         return Padding(
           padding: const EdgeInsets.all(16),
