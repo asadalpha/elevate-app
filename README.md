@@ -1,20 +1,23 @@
-# Elevate 🚀
+# Elevate Mobile App
 
-**Elevate** is an open-source educational tool designed to help students and tech enthusiasts stay informed and learn faster. By combining real-time tech news with powerful AI study aids, Elevate turns your device into a personal learning assistant.
+**Elevate** is an open-source educational app designed to help students and tech enthusiasts stay informed and learn faster. By combining real-time tech news with powerful AI study aids, Elevate turns your device into a personal learning assistant, a very minimal design is used for the entire app.
 
 ## 🎓 Why Use Elevate?
 
 Elevate is built with **students** and **lifelong learners** in mind. Here is how it helps you:
 
+*   **Practice and learn important and in-trend topics**.
+*   **Practice and learn important and in-trend topics**.
 *   **Stay Ahead of the Curve 📰**: Don't get left behind. Our **Tech News Aggregator** delivers the latest trends and headlines straight to you, so you're always informed about the industry.
 *   **Study Smarter, Not Harder 🧠**: Struggling with a new concept? Use our **AI Flashcards** (powered by Google Gemini) to instantly generate study materials on *any* topic. It’s perfect for cramming before exams or mastering new frameworks.
 *   **Digest Information Instantly 📄**: Have a 50-page research paper or documentation? Upload it to our **PDF Summarizer** and get the key takeaways in seconds.
 
 ## ✨ Key Features
 
-*   **Smart News Feed**: Curated technology news to keep you updated.
+*   **Important Subjects**: In demand Topics to learn and Get last minute grasp.
 *   **AI-Powered Learning**: Generate flashcards on demand using Generative AI.
-*   **Document Analysis**: Upload PDFs and get accurate, concise summaries.
+*   **Smart News Feed**: Curated technology news to keep you updated.
+*   **Document Analysis**: Upload PDFs and get accurate, concise summaries [in near future].
 *   **Cloud Sync**: Sign in with Google to save your bookmarks, flashcards, and summaries across devices (powered by Supabase).
 *   **Dark Mode**: A sleek, studious interface that's easy on the eyes during late-night study sessions.
 
@@ -22,7 +25,9 @@ Elevate is built with **students** and **lifelong learners** in mind. Here is ho
 
 *   **Flutter** - For a beautiful, cross-platform UI.
 *   **Supabase** - For secure authentication and real-time database.
-*   **Google Gemini** - The intelligence behind our flashcards and summaries.
+*   **Google Generative AI** - The intelligence behind our flashcards and summaries.
+*   **Hive** - For local Storage
+
 
 ---
 
