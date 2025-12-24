@@ -7,7 +7,6 @@
 Elevate is built with **students** and **lifelong learners** in mind. Here is how it helps you:
 
 *   **Practice and learn important and in-trend topics**.
-*   **Practice and learn important and in-trend topics**.
 *   **Stay Ahead of the Curve 📰**: Don't get left behind. Our **Tech News Aggregator** delivers the latest trends and headlines straight to you, so you're always informed about the industry.
 *   **Study Smarter, Not Harder 🧠**: Struggling with a new concept? Use our **AI Flashcards** (powered by Google Gemini) to instantly generate study materials on *any* topic. It’s perfect for cramming before exams or mastering new frameworks.
 *   **Digest Information Instantly 📄**: Have a 50-page research paper or documentation? Upload it to our **PDF Summarizer** and get the key takeaways in seconds.
